@@ -1,0 +1,26 @@
+body {
+    width: 300px;
+    padding: 15px;
+    font-family: sans-serif;
+}
+
+#captureButton {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#captureButton:hover {
+    background-color: #367c39;
+}
+
+#answerArea {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 50px;
+}
