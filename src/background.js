@@ -6,24 +6,17 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-// chrome.action.onClicked.addListener(async (tab) => {
-//   if (sidePanelOpen) {
-//     // Закриваємо бічну панель
-//     await chrome.sidePanel.setOptions({ enabled: false });
-//     console.log("Side panel вимкнено");
-//     sidePanelOpen = false;
-//   } else {
-//     // Спочатку вмикаємо панель
-//     await chrome.sidePanel.setOptions({ 
-//       enabled: true, 
-//       path: "sidebar.html" 
-//     });
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "capture_screen") {
+      chrome.tabs.captureVisibleTab(null, { format: "png" }, (screenshotUrl) => {
+          if (chrome.runtime.lastError) {
+              sendResponse({ success: false, error: chrome.runtime.lastError.message });
+          } else {
+              sendResponse({ success: true, imageUrl: screenshotUrl });
+          }
+      });
 
-//     console.log("Side panel налаштовано");
-    
-//     // Потім відкриваємо
-//     console.log(chrome.sidePanel.open);
-//     await chrome.sidePanel.open();
-//     sidePanelOpen = true;
-//   }
-// });
+      return true; // Потрібно для асинхронного `sendResponse`
+  }
+});
+
