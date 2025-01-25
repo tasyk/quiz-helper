@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Gemini Quiz Solver",
+    "name": "Quiz helper",
     "version": "1.0",
     "description": "Розширення для отримання відповіді на запитання з зображення на сторінці за допомогою Gemini.",
     "permissions": [
