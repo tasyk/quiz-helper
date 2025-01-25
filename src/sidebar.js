@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return fetch('key.txt') // Завантажуємо файл key.txt з кореня розширення
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Помилка завантаження key.txt: ${response.status} ${response.statusText}`);
+                    throw new Error(`Помилка завантаження key.txt: ${response.status} ${response.statusText}
+                        Додайте файл key.txt у корінь розширення і покладіть туди API ключ 
+                        (його мождна отримати у https://aistudio.google.com/   Get API key-(ліворуч вгорі))`);
                 }
                 return response.text();
             })
