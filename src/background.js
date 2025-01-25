@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function () {
   //chrome.action.enable();
   chrome.notifications.create({
     type: 'basic',
-    iconUrl: 'icons/icon48.png',
+    iconUrl: 'icons/icon64.png',
     title: 'Pin Extension',
     message: 'Pin Quiz Solver extension to the toolbar for easy access!',
     priority: 1
