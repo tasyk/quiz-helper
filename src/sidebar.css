@@ -1,6 +1,10 @@
+html {
+    margin: 0;
+}
+
 body {
-    width: 300px;
-    padding: 15px;
+    margin: 0;
+    width: 100%;
     font-family: sans-serif;
 }
 
@@ -18,9 +22,26 @@ body {
     background-color: #367c39;
 }
 
-#answerArea {
-    border: 1px solid #ccc;
+textarea, #answerArea {
+    width: 100%; 
+    margin: 10px 0;
     padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#answerArea {
     min-height: 50px;
+    background: #f9f9f9;
+}
+
+.wrapper{
+    padding:5px
 }

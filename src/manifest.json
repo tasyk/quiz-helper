@@ -8,7 +8,8 @@
       "activeTab",
       "scripting",
       "sidePanel",
-      "notifications"
+      "notifications",
+      "storage"
     ],
     "side_panel": {
     "default_path": "sidebar.html",

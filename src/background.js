@@ -28,5 +28,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       return true; // Потрібно для асинхронного `sendResponse`
   }
+  else{
+    console.log("Лог із sidebar.js:", request.log);
+  }
 });
+
+
 

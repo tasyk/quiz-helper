@@ -1,8 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
     const captureButton = document.getElementById('captureButton');
     const answerArea = document.getElementById('answerArea');
-
+    const promptArea = document.getElementById('promptArea');
     let geminiApiKey = null; // Змінна для зберігання API ключа
+
+    function log(message) {
+        chrome.runtime.sendMessage({ log: message });
+    }
+
+
+    // Save prompt to storage on unload
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+            chrome.storage.sync.set({ promptText: promptArea.value });
+            log(promptArea.value + ' prompt збережено'); 
+        }
+    });
+    
+    
+    //load stored prompt
+    chrome.storage.sync.get("promptText", (data) => {
+        if (data.promptText) {
+            promptArea.value = data.promptText;
+            log(data.promptText + ' prompt завантажено'); 
+            
+        }
+        else {
+            promptArea.value = "на картинці запитання з варіантами відповідей " +
+            "Який варіант відповіді правильний? (якщо таких задач кілька, дай відповідь на кожну)";
+            log('Промпт за замовчуванням: ' + promptArea.value); 
+        }
+    });
 
     // Функція для завантаження API ключа з key.txt
     function loadApiKey() {
@@ -20,19 +48,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!geminiApiKey) {
                     throw new Error('API ключ не знайдено у файлі key.txt.');
                 }
-                console.log('API ключ завантажено.'); // Для дебагу
+                log('API ключ завантажено.'); // Для дебагу
+
+                
+
             })
             .catch(error => {
                 answerArea.textContent = `Помилка завантаження API ключа: ${error.message}`;
-                console.error('Помилка завантаження API ключа:', error);
+                error('Помилка завантаження API ключа:', error);
                 throw error; // Прокидаємо помилку далі, щоб зупинити ініціалізацію
             });
     }
 
+  
+
     // Завантажуємо API ключ перед додаванням обробника подій кнопки
-    loadApiKey()
+    loadApiKey()        
         .then(() => {
             captureButton.addEventListener("click", function() {
+                log("Кнопка натиснута");
+
+                
+
                 answerArea.textContent = "Завантаження зображення...";
             
                 chrome.runtime.sendMessage({ action: "capture_screen" }, (response) => {
@@ -44,8 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     answerArea.textContent = "Відправка зображення до Gemini...";
                     //`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=${geminiApiKey}`
                     const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='
-
-            
+                            
                     fetch(url+geminiApiKey, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -57,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         data: response.imageUrl.split(',')[1] // Видаляємо "data:image/png;base64,"
                                     }
                                 }, {
-                                    text: "Який варіант відповіді правильний? Дай коротку відповідь."
+                                    text: promptArea.value
                                 }]
                             }]
                         })
