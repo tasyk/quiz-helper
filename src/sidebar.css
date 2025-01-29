@@ -9,7 +9,7 @@ body {
 }
 
 #captureButton {
-    padding: 10px 15px;
+    padding: 10px 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -21,11 +21,18 @@ body {
 #captureButton:hover {
     background-color: #367c39;
 }
+h1 {    
+    margin: 0;
+    padding: 5px;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+}
 
 textarea, #answerArea {
     width: 100%; 
-    margin: 10px 0;
-    padding: 10px;
+    margin: 5px 0;
+    padding: 5px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
