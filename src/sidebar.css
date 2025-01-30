@@ -9,21 +9,20 @@ body {
 }
 
 #captureButton {
-    padding: 10px 10px;
+   
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    margin-bottom: 10px;
 }
 
 #captureButton:hover {
     background-color: #367c39;
 }
-h1 {    
+.line {    
     margin: 0;
-    padding: 5px;
+    
     justify-content: space-between;
     width: 100%;
     display: flex;
@@ -51,4 +50,13 @@ textarea {
 
 .wrapper{
     padding:5px
+}
+select{
+    width: 100%;
+    padding: 5px;
+    
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }

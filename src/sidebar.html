@@ -6,7 +6,16 @@
 </head>
 <body>
     <div class="wrapper">
-        <h1>Quiz helper <button id="captureButton">Run</button></h1>    
+        <div class="line"> 
+            <select id="modelUrl">
+                <option value="https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=">gemini-1.5-flash</option>
+                <option value="https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=">gemini-1.5-flash-latest</option>
+                <option value="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp-01-21:generateContent?key=">gemini-2.0-flash-thinking-exp-01-21</option>
+                <option value="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=">gemini-2.0-flash-exp</option>
+            </select> &nbsp;
+            <button id="captureButton">Run</button>
+        </div>
+          
         <textarea id="promptArea"></textarea>
         <div id="answerArea">        
         </div>

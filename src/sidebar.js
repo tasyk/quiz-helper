@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
             chrome.storage.sync.set({ promptText: promptArea.value });
-            log(promptArea.value + ' prompt збережено'); 
+            chrome.storage.sync.set({ modelUrl: modelUrl.value });
+            //log(promptArea.value + ' prompt збережено'); 
         }
     });
     
@@ -29,6 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
             promptArea.value = "на картинці запитання з варіантами відповідей " +
             "Який варіант відповіді правильний? (якщо таких задач кілька, дай відповідь на кожну)";
             log('Промпт за замовчуванням: ' + promptArea.value); 
+        }
+    });
+    chrome.storage.sync.get("modelUrl", (data) => {
+        if (data.modelUrl) {
+            modelUrl.value = data.modelUrl;            
         }
     });
 
@@ -48,9 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!geminiApiKey) {
                     throw new Error('API ключ не знайдено у файлі key.txt.');
                 }
-                log('API ключ завантажено.'); // Для дебагу
-
-                
+                log('API ключ завантажено.'); 
 
             })
             .catch(error => {
@@ -68,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
             captureButton.addEventListener("click", function() {
                 log("Кнопка натиснута");
 
-                
-
                 answerArea.textContent = "Завантаження зображення...";
             
                 chrome.runtime.sendMessage({ action: "capture_screen" }, (response) => {
@@ -79,9 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
             
                     answerArea.textContent = "Відправка зображення до Gemini...";
-                    //`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=${geminiApiKey}`
-                    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='
-                            
+                    //const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='
+
+                    //https://generativelanguage.googleapis.com/v1beta/{model=models/*}:streamGenerateContent
+
+                    var url = document.getElementById("modelUrl").value;
+
                     fetch(url+geminiApiKey, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -98,7 +103,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             }]
                         })
                     })
-                    .then(res => res.json())
+                    .then(async res => {
+                        if (!res.ok) {
+                            let errorText = await res.text();
+                            throw new Error(`HTTP ${res.status}: ${errorText}`);
+                        }
+                        return res.json();
+                    })
                     .then(data => {
                         if (data.error) throw new Error(data.error.message);
                         answerArea.textContent = data.candidates?.[0]?.content?.parts?.[0]?.text || "Не вдалося отримати відповідь.";
