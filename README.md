@@ -1,34 +1,34 @@
 # quiz-helper
 
-Це Chrome Extension, який допомагає давати відповіді на питання на активному табі.
+This is a Chrome Extension that helps answer questions on the active tab.
 
-## Як запустити:
+## How to Run:
 
-1. Скачайте репозиторій.
+1. Download the repository.
 
-2. Зайдіть на [AI Studio](https://aistudio.google.com/).
+2. Go to [AI Studio](https://aistudio.google.com/).
 
-3. Залогіньтесь і у верхньому лівому куті натисніть **Get API Key**.
+3. Log in and click **Get API Key** in the upper left corner.
 
-4. У папці `src` скачаного репозиторія створіть файл **key.txt** і помістіть туди отриманий ключ.
+4. In the `src` folder of the downloaded repository, create a file named **key.txt** and paste the obtained key there.
 
-5. Перейдіть на [chrome://extensions/](chrome://extensions/).
+5. Go to [chrome://extensions/](chrome://extensions/).
 
-6. Активуйте **Developer Mode** (праворуч вгорі).
+6. Enable **Developer Mode** (top right corner).
 
-7. Натисніть **Load unpacked** (ліворуч вгорі).
+7. Click **Load unpacked** (top left corner).
 
-8. Виберіть кореневу папку `src` вашого скачаного репозиторія.
+8. Select the root `src` folder of your downloaded repository.
 
-9. Пришпиліть (pin) Quiz helper озширення щоб його було видно завйжди (для цього праворуч згори у хромі знайдіть іконку яка відповідає за всі розширення. клікніть на ній і вниз виїде список розширень.Знайдіть у тому списку **Quiz Helper** і натиснівть праворуч від нього pin)
+9. Pin the Quiz Helper extension to keep it always visible (to do this, find the extensions icon in the top right corner of Chrome, click on it, and a dropdown list of extensions will appear. Find **Quiz Helper** in the list and click the pin icon next to it).
 
-10. Клікніть на іконку **Quiz Helper** і вона відкриє сайдпанель.
+10. Click on the **Quiz Helper** icon to open the side panel.
 
-11. Відкрийте у браузері сторінку з питанням.
+11. Open a webpage with a question in your browser.
 
-12. На sidePanel (раворуч у браузері) Клікніть на кнопку **Run**.
+12. In the side panel (on the right side of the browser), click the **Run** button.
 
-### Результати:
+### Results:
 
-- Якщо все вірно, під кнопкою з'явиться правильна відповідь.
-- Якщо є помилка, то з'явиться повідомлення про помилку.
+- If everything is correct, the correct answer will appear below the button.
+- If an error occurs, an error message will be displayed.

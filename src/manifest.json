@@ -2,7 +2,8 @@
     "manifest_version": 3,
     "name": "Quiz helper",
     "version": "1.0",
-    "description": "Розширення для отримання відповіді на запитання з зображення на сторінці за допомогою Gemini.",
+    "description": "__MSG_extension_description__",
+    "default_locale": "en",
     "permissions": [
       "tabs",
       "activeTab",

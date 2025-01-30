@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const captureButton = document.getElementById('captureButton');
     const answerArea = document.getElementById('answerArea');
     const promptArea = document.getElementById('promptArea');
-    let geminiApiKey = null; // Змінна для зберігання API ключа
+    let geminiApiKey = null; 
 
     function log(message) {
         chrome.runtime.sendMessage({ log: message });
@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.visibilityState === "hidden") {
             chrome.storage.sync.set({ promptText: promptArea.value });
             chrome.storage.sync.set({ modelUrl: modelUrl.value });
-            //log(promptArea.value + ' prompt збережено'); 
         }
     });
     
@@ -23,13 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.storage.sync.get("promptText", (data) => {
         if (data.promptText) {
             promptArea.value = data.promptText;
-            log(data.promptText + ' prompt завантажено'); 
+            //log(data.promptText + ' prompt завантажено'); 
             
         }
         else {
-            promptArea.value = "на картинці запитання з варіантами відповідей " +
-            "Який варіант відповіді правильний? (якщо таких задач кілька, дай відповідь на кожну)";
-            log('Промпт за замовчуванням: ' + promptArea.value); 
+            promptArea.value = chrome.i18n.getMessage("default_prompt");            
         }
     });
     chrome.storage.sync.get("modelUrl", (data) => {

@@ -1,0 +1,10 @@
+{
+    "extension_description": {
+        "message": "An extension to get answers to image-based questions on a page using Gemini.",
+        "description": "Extension description in English"
+    },
+    "default_prompt": {
+    "message": "The image contains a question with multiple-choice answers. Give a short answer indicating the correct option, followed by a brief explanation",
+    "description": "Prompt за замовчуванням"
+  }
+}
