@@ -1,4 +1,5 @@
 # quiz-helper
+[English](README.md) | [Українська](README.uk.md) 
 
 This is a Chrome Extension that helps answer questions on the active tab.
 

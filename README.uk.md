@@ -1,4 +1,5 @@
 # quiz-helper
+[English](README.md) | [Українська](README.uk.md) 
 
 Це Chrome Extension, який допомагає давати відповіді на питання на активному табі.
 
